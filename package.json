@@ -1,0 +1,11 @@
+{
+  "name": "@frontierjs/styles",
+  "version": "0.0.0-beta.0",
+  "description": "",
+  "main": "index.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "author": "",
+  "license": "ISC"
+}
