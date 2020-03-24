@@ -1,8 +1,11 @@
 /* ==========================================================================
    Variables
-   -Fonts
-   -Colors ref: pg 139 of color pallete
-   -Breakponts
+   - Fonts
+   - Padding
+   - Margin
+   - Borders
+   - Box Shadows
+
    ---
    Global SCSS variables (override default values defined in component files)
    ========================================================================== */
@@ -17,23 +20,7 @@ $g-base-line-height: 1.65 !default;
 $g-headings-font-weight: 500 !default;
 $g-headings-font-family: "Untitled Sans", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !default;
 
-/* Colors
-   ========================================================================== */
 
-$g-text-color: #FFF;
-// $g-primary-color-light: #ffae32;
-$g-primary-color-light: hsl(43, 100%, 85%);
-$g-primary-color-dark: #775117;
-$g-primary-color-darker: #4d340e;
-
-/* Breakpoints
-   ========================================================================== */
-
-$g-bp1: 400px;
-$g-bp-footer: 620px;
-$g-bp2: 700px;
-$g-bp3: 900px;
-$g-bp4: 1200px;
 
 /* General
    ========================================================================== */
@@ -58,24 +45,16 @@ $margin-lg:     60px;
 $margin-xl:     80px;
 $margin-xxl:    100px;
 
-$site-width: 1200px;
-$width-xs:   576px;
-$width-sm:   768px;
-$width-md:   992px;
-$width-xl:   1200px;
-$width-xxl:  1400px;
-$height-sm:  800px;
-$height-md:  900px;
 
 /************************** need systems for these
 Font size
 Font weight
 Line height
-Color
 Margin
 Padding
 Width
 Height
+
 /*
 Box shadows
 */
