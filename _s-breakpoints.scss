@@ -1,134 +1,146 @@
-$unit:  16px;
+$unit: 16px;
 $block: $unit * 8;
 
-$bl:   $block;
-$sec:  $block * 2;
-$xxs:  $block * 3;
-$xs:   $block * 4;
-$sm:   $block * 5;
-$md:   $block * 6;
-$ml:   $block * 7;
-$lg:   $block * 8;
-$xl:   $block * 9;
-$xxl:  $block * 10;
+$bl: $block;
+$sec: $block * 2;
+$xxs: $block * 3;
+$xs: $block * 4;
+$sm: $block * 5;
+$md: $block * 6;
+$ml: $block * 7;
+$lg: $block * 8;
+$xl: $block * 9;
+$xxl: $block * 10;
 $huge: $block * 20;
 
 $bps: (
-  "bl":   $bl,
-  "sec":  $sec,
-  "xxs":  $xxs,
-  "xs":   $xs,
-  "sm":   $sm,
-  "md":   $md,
-  "ml":   $ml,
-  "lg":   $lg,
-  "xl":   $xl,
-  "xxl":  $xxl,
-  "huge": $huge,
+  'bl': $bl,
+  'sec': $sec,
+  'xxs': $xxs,
+  'xs': $xs,
+  'sm': $sm,
+  'md': $md,
+  'ml': $ml,
+  'lg': $lg,
+  'xl': $xl,
+  'xxl': $xxl,
+  'huge': $huge
 );
 
-
 // Core Mixins
-@mixin g-span($start:start, $end:end) {
+@mixin g-span($start: start, $end: end) {
   grid-column-start: $start;
-  grid-column-end:  $end;
+  grid-column-end: $end;
 }
 
-
-@mixin min-bp($bp) { 
+@mixin min-bp($bp) {
   @if map-has-key($bps, $bp) {
     @media (min-width: #{map-get($bps, $bp)}) {
       @content;
     }
-  }
-  @else {
+  } @else {
     @warn "Unfortunately, no value could be retrieved from `#{$bp}`. "
         + "Please make sure it is defined in `$breakpoints` map.";
   }
 }
 
-@mixin max-bp($bp) { 
+@mixin max-bp($bp) {
   @if map-has-key($bps, $bp) {
     @media (max-width: #{map-get($bps, $bp)}) {
       @content;
     }
-  }
-  @else {
+  } @else {
     @warn "Unfortunately, no value could be retrieved from `#{$bp}`. "
         + "Please make sure it is defined in `$breakpoints` map.";
   }
 }
 
-@mixin bp($start, $stop:huge) {
+@mixin bp($start, $stop: huge) {
   @include max-bp($stop) {
-     @include min-bp($start) {
-        @content;
+    @include min-bp($start) {
+      @content;
     }
   }
 }
 
 // Child Mixins
-@mixin bl($stop:huge) {
+@mixin bl($stop: huge) {
   @include bp(bl, $stop) {
-    @content
+    @content;
   }
 }
-@mixin sec($stop:huge) {
+@mixin sec($stop: huge) {
   @include bp(sec, $stop) {
-    @content
+    @content;
   }
 }
-@mixin xxs($stop:huge) {
+@mixin xxs($stop: huge) {
   @include bp(xxs, $stop) {
-    @content
+    @content;
   }
 }
-@mixin xs($stop:huge) {
+@mixin xs($stop: huge) {
   @include bp(xs, $stop) {
-    @content
+    @content;
   }
 }
-@mixin sm($stop:huge) {
+@mixin sm($stop: huge) {
   @include bp(sm, $stop) {
-    @content
+    @content;
   }
 }
-@mixin md($stop:huge) {
+@mixin md($stop: huge) {
   @include bp(md, $stop) {
-    @content
+    @content;
   }
 }
-@mixin ml($stop:huge) {
+@mixin ml($stop: huge) {
   @include bp(ml, $stop) {
-    @content
+    @content;
   }
 }
-@mixin lg($stop:huge) {
+@mixin lg($stop: huge) {
   @include bp(lg, $stop) {
-    @content
+    @content;
   }
 }
-@mixin xl($stop:huge) {
+@mixin xl($stop: huge) {
   @include bp(xl, $stop) {
-    @content
+    @content;
   }
 }
-@mixin xxl($stop:huge) {
+@mixin xxl($stop: huge) {
   @include bp(xxl, $stop) {
-    @content
+    @content;
   }
 }
 
 @mixin debug-bps {
   border: 3px solid white;
-  @include xxs { border: 3px solid black; }
-  @include xs { border: 3px solid red; }
-  @include sm { border: 3px solid orange; }
-  @include md { border: 3px solid yellow; }
-  @include ml { border: 3px solid green; }
-  @include lg { border: 3px solid blue; }
-  @include xl { border: 3px solid indigo; }
-  @include xxl { border: 3px solid violet; }
+  @include xxs {
+    border: 3px solid black;
+  }
+  @include xs {
+    border: 3px solid red;
+  }
+  @include sm {
+    border: 3px solid orange;
+  }
+  @include md {
+    border: 3px solid yellow;
+  }
+  @include ml {
+    border: 3px solid green;
+  }
+  @include lg {
+    border: 3px solid blue;
+  }
+  @include xl {
+    border: 3px solid indigo;
+  }
+  @include xxl {
+    border: 3px solid violet;
+  }
 }
 
 /* Example
@@ -220,4 +232,3 @@ $bps: (
 }
 
 */
-
