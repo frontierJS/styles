@@ -1,70 +1,40 @@
 /* ==========================================================================
-   Stylesheet for FrontierJS
-   ITCSS + BEM
-   ========================================================================== */
+  Stylesheet for FrontierJS
+============================================================================= */
 
-/* Settings: preprocessor variables, colors, global settings, breakpoints
-   ========================================================================== */
-@import '_s-colors';
-@import '_s-semantic-colors';
-@import '_s-breakpoints';
-@import '_s-variables';
+/* Settings: preprocessor variables, colors, global settings
+============================================================================= */
+@import '_s-color-palette';
+@import '_s-variables'; //This needs work
+@import '_s-breakpoints'; //This needs clean up
 
-/* Generic: CSS reset, box-sizing, global CSS tweaks
-   ========================================================================== */
-@import '_reset';
-
-/* Elements: element selectors, CMS-generated content
-   ========================================================================== */
-@import '_e-base';
-
-/* Objects/Containers: layout-related CSS, grid, SVG icons frame, flexbox classes
-   ========================================================================== */
-@import '_o-container';
-@import '_o-flex';
-@import '_o-grid';
-
-/* Block level */
-// @import './ply/hstack.css';
-// @import './ply/vstack.css';
-// @import './ply/list.css';
-// @import './ply/spacer.css';
-// @import './ply/divider.css';
-// @import './ply/text.css';
-// @import './ply/view.css';
-
-/* Helpers */
-// @import './ply/_debug.css';
-// @import './ply/_stretch.css';
-
-// @import "_o-table" maybe?;
+/* Generic/Elements: element selectors, CMS-generated content
+============================================================================= */
+@import '_e-mixins'; //Don't need to touch unless adding mixin
+@import '_e-reset'; //Don't touch, just default reset css
+@import '_e-base'; // Fine tune this one
 
 /* Components: separately styled components (buttons, form inputs, toolbars...)
-   ========================================================================== */
-@import '_c-brand';
-@import '_c-btn';
-@import '_c-btn-toolbar';
-@import '_c-categories-nav';
-@import '_c-content';
-@import '_c-footer';
-@import '_c-header';
-@import '_c-intro';
-@import '_c-mobile-header';
-@import '_c-nav';
-@import '_c-nav-logo-holder';
-@import '_c-nav-mobile';
-@import '_c-nav-toggle';
-@import '_c-sticky-footer-layout';
-@import '_c-forms-inputs';
-/* Buttons */
+============================================================================= */
+
+@import '_c-form-input';
+@import '_c-button';
 
 /* Utilities: specific helper classes, overrides
-   ========================================================================== */
-
+============================================================================= */
+@import '_u-containers';
+@import '_u-text';
 @import '_u-generic';
-@import '_u-spacer';
-@import '_u-display';
 
-.test {
-  border: black;
+/*
+html {
+  @include site-layout;
+  @include bps-debug;
+  @include blockObjects;
+  @include contentObjects;
+  @include textObjects;
+  @include flex;
+
+  @include font-settings;
 }
+*/

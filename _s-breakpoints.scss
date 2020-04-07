@@ -1,17 +1,7 @@
-$unit: 16px;
-$block: $unit * 8;
-
-$bl: $block;
-$sec: $block * 2;
-$xxs: $block * 3;
-$xs: $block * 4;
-$sm: $block * 5;
-$md: $block * 6;
-$ml: $block * 7;
-$lg: $block * 8;
-$xl: $block * 9;
-$xxl: $block * 10;
-$huge: $block * 20;
+@use "sass:math";
+// create a list of our sizes that can beused for looping
+// I guess it is just the keys of $bps
+// look up sass loops and getting map-keys
 
 $bps: (
   'bl': $bl,
@@ -20,11 +10,11 @@ $bps: (
   'xs': $xs,
   'sm': $sm,
   'md': $md,
-  'ml': $ml,
+  'lm': $lm,
   'lg': $lg,
   'xl': $xl,
   'xxl': $xxl,
-  'huge': $huge
+  'huge': $huge,
 );
 
 // Core Mixins
@@ -55,15 +45,70 @@ $bps: (
   }
 }
 
+@mixin d-grid-display($bp) {
+  $bp-count: map-get($bps, $bp) / $block;
+  $bp-2: $block;
+  display: grid;
+  grid-template-columns: [start] repeat(auto-fit, minmax($bp-2, 1fr)) [end];
+  .gx-span-full {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+  .gx-span-1 {
+    grid-column: span 1;
+  }
+  .gx-span-2 {
+    grid-column: span 2;
+  }
+  .gx-span-3 {
+    grid-column: span 3;
+  }
+  .gx-span-4 {
+    grid-column: span 4;
+  }
+  .gx-span-half {
+    grid-column: span floor($bp-count / 2);
+  }
+  .gx-span-quarter {
+    grid-column: span floor($bp-count / 4);
+  }
+  .gx-span-eighth {
+    grid-column: span floor($bp-count / 8);
+  }
+}
+
+@mixin bp-utils($bp) {
+  .#{$bp}-display-none {
+    display: none;
+  }
+  .#{$bp}-display {
+    display: unset;
+  }
+  .#{$bp}-w-max {
+    max-width: #{map-get($bps, $bp)};
+  }
+  .#{$bp}-display-grid {
+    @include d-grid-display($bp);
+  }
+  .#{$bp}-font-size-smaller {
+    font-size: 0.8em;
+  }
+  .#{$bp}-font-size-larger {
+    font-size: 1.2em;
+  }
+}
+
 @mixin bp($start, $stop: huge) {
   @include max-bp($stop) {
     @include min-bp($start) {
+      @include bp-utils($start);
       @content;
     }
   }
 }
 
 // Child Mixins
+//TODO: make the this a loop function
 @mixin bl($stop: huge) {
   @include bp(bl, $stop) {
     @content;
@@ -94,8 +139,8 @@ $bps: (
     @content;
   }
 }
-@mixin ml($stop: huge) {
-  @include bp(ml, $stop) {
+@mixin lm($stop: huge) {
+  @include bp(lm, $stop) {
     @content;
   }
 }
@@ -115,70 +160,87 @@ $bps: (
   }
 }
 
-@mixin debug-bps {
-  border: 3px solid white;
-  @include xxs {
-    border: 3px solid black;
-  }
-  @include xs {
-    border: 3px solid red;
-  }
-  @include sm {
-    border: 3px solid orange;
-  }
-  @include md {
-    border: 3px solid yellow;
-  }
-  @include ml {
-    border: 3px solid green;
-  }
-  @include lg {
-    border: 3px solid blue;
-  }
-  @include xl {
-    border: 3px solid indigo;
-  }
-  @include xxl {
-    border: 3px solid violet;
+@mixin bps-debug-utils($bp, $color) {
+  $breakpoint: map-get($bps, $bp) / $block;
+  border: 3px solid $color;
+  &::before {
+    background-color: $color;
+    display: block;
+    width: 100%;
+    content: '#{$bp}@min-width #{map-get($bps, $bp)}  -- #{$breakpoint} blocks wide';
+    grid-column: 1 / -1;
   }
 }
 
-/* Example
+//TODO: make the this a loop function
+@mixin bps-debug {
+  .bps-debug {
+    @media (max-width: 370px) {
+      // Show that we don't need to size for this small
+      display: none;
+    }
+    border: 3px solid violet; //less than 385px
+    @include xxs {
+      @include bps-debug-utils(xxs, green);
+    }
+    @include xs {
+      @include bps-debug-utils(xs, red);
+    }
+    @include sm {
+      @include bps-debug-utils(sm, orange);
+    }
+    @include md {
+      @include bps-debug-utils(md, yellow);
+    }
+    @include lm {
+      @include bps-debug-utils(lm, green);
+    }
+    @include lg {
+      @include bps-debug-utils(lg, blue);
+    }
+    @include xl {
+      @include bps-debug-utils(xl, indigo);
+    }
+    @include xxl {
+      @include bps-debug-utils(xxl, violet);
+    }
+  }
+}
+
+@mixin site-layout {
+  .display-none {
+    display: none;
+  }
+  @include xxs {
+  }
+  @include xs {
+  }
+  @include sm {
+  }
+  @include md {
+  }
+  @include lm {
+  }
+  @include lg {
+  }
+  @include xl {
+  }
+  @include xxl {
+  }
+}
+
+/* Examples
 * You can use @include bp({start}, {stop})
 * or an single breakpoint @include sm({stop})
 
-
-.example {
-  @include bl(sec) {
-    
-  }
-   @include xs(md) {
-    .item {
-      background-color: blue;
-    }
-  }
-  @include md(xl) {
-    .item {
-      background-color: green;
-    }
-  }
-   @include xl {
-    .item {
-      background-color: red;
-    }
-  }
-}
-
 @mixin site-layout() {
-  //DEFAULT
+  // DEFAULT
   display: flex;
   flex-flow: column;
   .links {
     display: none;
   }
 
-  // XXS
-  @include xxs { }
   // XS
   @include xs { }
 
@@ -213,22 +275,12 @@ $bps: (
     }
   }
 
-  // ML
-  @include ml { }
   // LG
   @include lg { }
-  // XL
-  @include xl { }
-  // XXL
-  @include xxl { }
-  
 }
 
 .app {
   height: 100%;
-  font-size: 22px;
-  @include template;
   @include site-layout;
 }
-
 */
