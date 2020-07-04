@@ -1,135 +1,70 @@
 //TODO revisit where markdown should live
-*[dd] * {
-  outline: 1px dashed #009ddc !important;
-}
 
 .reader,
 .markdown {
   font-family: Montserrat, sans-serif;
-  line-height: $d-line-height * 1.2;
+  line-height: $d-line-height * 1;
   background-color: #00000004;
-  font-size: $d-font-size * 1.5;
-  color: $d-color-black;
+  padding-left: $d-padding-x;
+  padding-right: $d-padding-x;
+  color: $d-black;
   p ~ p {
     margin-top: $d-margin-x;
-    word-wrap: word;
+    word-wrap: break-word;
   }
-}
-.bg {
-  background-color: $d-background-color;
-}
-.cursor-pointer {
-  cursor: pointer;
 }
 
 .db {
-  border: 1px solid red;
+  outline: 1px solid red;
   .db {
-    margin: 1px;
-    border: 1px solid blue;
+    outline: 1px solid blue;
   }
 }
-.border {
+*[debug] * {
+  outline: 1px dashed #009ddc !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.bg {
+  // background-color: $d-background-color;
+  background-color: #f1f5ff;
+}
+
+.br {
   border: $d-border;
 }
-.border-none {
+.brn {
   border: none;
 }
 
-//Padding
-.p {
-  padding: $d-padding-x $d-padding-y;
-}
-.p-xxs {
-  padding: ($d-padding-x * 0.25) ($d-padding-y * 0.25);
-}
-.p-xs {
-  padding: ($d-padding-x * 0.5) ($d-padding-y * 0.5);
-}
-.p-sm {
-  padding: ($d-padding-x * 0.75) ($d-padding-y * 0.75);
-}
-.p-md {
-  padding: ($d-padding-x * 1.25) ($d-padding-y * 1.25);
-}
-.p-lm {
-  padding: ($d-padding-x * 1.5) ($d-padding-y * 1.5);
-}
-.p-lm {
-  padding: ($d-padding-x * 2) ($d-padding-y * 2);
-}
-.p-lg {
-  padding: ($d-padding-x * 3) ($d-padding-y * 3);
-}
-.p-xl {
-  padding: ($d-padding-x * 4) ($d-padding-y * 4);
-}
-.p-xxl {
-  padding: ($d-padding-x * 6) ($d-padding-y * 6);
-}
-.pt {
-  padding-top: $d-padding-y;
-}
-.pb {
-  padding-bottom: $d-padding-y;
-}
-.pr {
-  padding-right: $d-padding-x;
-}
-.pl {
-  padding-left: $d-padding-x;
-}
-.p-none {
-  padding: 0;
-}
-.px {
-  padding-left: $d-padding-x;
-  padding-right: $d-padding-x;
-}
-
-.py {
-  padding-top: $d-padding-y;
-  padding-bottom: $d-padding-y;
-}
-//Margins
-.m {
-  margin: $d-margin-x $d-margin-y;
-}
-.m-auto {
+/* Margin
+============================================================================= */
+.ma {
   margin: auto;
 }
-.m-none {
+.mn {
   margin: 0;
 }
-.mt {
-  margin-top: $d-margin-x;
-}
-.mb {
-  margin-bottom: $d-margin-x;
-}
-.ml {
-  margin-left: $d-margin-y;
-}
-.mr {
-  margin-right: $d-margin-y;
-}
-.mt-auto {
+.mta {
   margin-top: auto;
 }
-.mb-auto {
+.mba {
   margin-bottom: auto;
 }
-.ml-auto {
+.mla {
   margin-left: auto;
 }
-.mr-auto {
+.mra {
   margin-right: auto;
 }
 .mx {
   margin-left: $d-margin-x;
   margin-right: $d-margin-x;
 }
-.mx-auto {
+.mxa {
   margin-left: auto;
   margin-right: auto;
 }
@@ -137,11 +72,210 @@
   margin-top: $d-margin-y;
   margin-bottom: $d-margin-y;
 }
-.my-auto {
+.mya {
   margin-top: auto;
   margin-bottom: auto;
 }
 
-.display-none {
-  display: none;
+$m-axises: x, y;
+@each $axis in $m-axises {
+  @each $mKey, $mVal in $multipliers {
+    $key: m#{$axis}#{$mKey};
+    @if $axis == x {
+      .#{$key} {
+        margin-left: $d-margin-x * $mVal;
+        margin-right: $d-margin-x * $mVal;
+      }
+      ._#{$key} > * {
+        margin-left: $d-margin-x * $mVal;
+        margin-right: $d-margin-x * $mVal;
+      }
+    } @else if $axis == y {
+      .#{$key} {
+        margin-top: $d-margin-y * $mVal;
+        margin-bottom: $d-margin-y * $mVal;
+      }
+      ._#{$key} > * {
+        margin-top: $d-margin-y * $mVal;
+        margin-bottom: $d-margin-y * $mVal;
+      }
+    }
+  }
+}
+
+/* Padding
+============================================================================= */
+
+@each $oKey, $oVal in $spacing-options {
+  @each $dKey, $dVal in $directions {
+    @each $mKey, $mVal in $multipliers {
+      $key: #{$oKey}#{$dKey}#{$mKey};
+      .#{$key} {
+        #{$oVal}#{$dVal}: 1em * $mVal;
+      }
+      ._#{$key} > * {
+        #{$oVal}#{$dVal}: 1em * $mVal;
+      }
+    }
+  }
+}
+
+.pn,
+._pn > * {
+  padding: 0;
+}
+.p,
+._p > * {
+  padding: $d-padding-x $d-padding-y;
+}
+.px,
+._px > * {
+  padding-left: $d-padding-x;
+  padding-right: $d-padding-x;
+}
+
+.py,
+._py > * {
+  padding-top: $d-padding-y;
+  padding-bottom: $d-padding-y;
+}
+
+$p-axises: x, y;
+@each $axis in $p-axises {
+  @each $mKey, $mVal in $multipliers {
+    $key: p#{$axis}#{$mKey};
+    @if $axis == x {
+      .#{$key} {
+        padding-left: $d-padding-x * $mVal;
+        padding-right: $d-padding-x * $mVal;
+      }
+      ._#{$key} > * {
+        padding-left: $d-padding-x * $mVal;
+        padding-right: $d-padding-x * $mVal;
+      }
+    } @else if $axis == y {
+      .#{$key} {
+        padding-top: $d-padding-y * $mVal;
+        padding-bottom: $d-padding-y * $mVal;
+      }
+      ._#{$key} > * {
+        padding-top: $d-padding-y * $mVal;
+        padding-bottom: $d-padding-y * $mVal;
+      }
+    }
+  }
+}
+
+/* Other
+============================================================================= */
+
+.hide {
+  visibility: hidden;
+}
+.show {
+  visibility: visible;
+}
+
+@each $oKey, $oVal in $size-options {
+  @each $mKey, $mVal in $multipliers {
+    $key: #{$oKey}#{$mKey};
+    .\%#{$key} {
+      #{$oVal}: 25% * $mVal;
+    }
+    ._\%#{$key} > * {
+      #{$oVal}: 25% * $mVal;
+    }
+  }
+}
+.w\@vw {
+  height: 100vw;
+}
+.h\@vh {
+  height: 100vh;
+}
+
+.bg-black {
+  background-color: black;
+}
+.v-grey {
+  color: #ccc;
+}
+
+.w1 {
+  width: 100%;
+  max-width: 128px;
+}
+.mw {
+  width: 100%;
+  max-width: 100%;
+}
+
+.mw1 {
+  width: 100%;
+  min-width: 128px;
+}
+
+.mw\@m {
+  width: 100%;
+  max-width: 5 * 128px;
+}
+
+.w__ {
+  width: 18vmin;
+}
+.w_ {
+  width: 22vmin;
+}
+.w-- {
+  width: 28vmin;
+}
+.w- {
+  width: 32vmin;
+}
+.w {
+  width: 36vmin;
+}
+.w\+ {
+  width: 40vmin;
+}
+
+.w\+\+ {
+  width: 44vmin;
+}
+.w\* {
+  width: 54vmin;
+}
+
+.w\*\* {
+  width: 68vmin;
+}
+
+.h__ {
+  height: 18vmin;
+}
+.h_ {
+  height: 22vmin;
+}
+.h-- {
+  height: 28vmin;
+}
+.h- {
+  height: 32vmin;
+}
+.h {
+  height: 36vmin;
+}
+.h\+ {
+  height: 40vmin;
+}
+
+.h\+\+ {
+  height: 44vmin;
+}
+.h\* {
+  height: 54vmin;
+}
+
+.h\*\* {
+  height: 68vmin;
 }

@@ -1,124 +1,369 @@
-.float-left {
-  float: left;
-}
-.float-right {
-  float: right;
-}
-
-//Grid
-.grid-all > * {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16px, 1fr));
-}
-
-@mixin flex() {
-  .flex,
-  article {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    &.grid-all > * {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax($block, 1fr));
+/* Grid
+============================================================================= */
+@mixin grid() {
+  .grid {
+    display: grid;
+    grid-auto-flow: row;
+    &.columns {
+      grid-auto-flow: column;
     }
-    &.flex-start {
-      justify-content: flex-start;
+    &.s {
+      place-content: stretch;
     }
-    &.space-between {
-      justify-content: space-between;
+    &.sb {
+      place-content: space-between;
     }
-    &.space-around {
-      justify-content: space-around;
+    &.sa {
+      place-content: space-around;
     }
-    &.align-start {
-      align-items: start;
+    &.se {
+      place-content: space-evenly;
     }
-    &.align-end {
+    &.c {
+      place-content: center;
+    }
+    &.b {
+      align-content: end;
+    }
+    &._b {
       align-items: end;
     }
-    &.row {
-      flex-direction: row;
+    &.r {
+      place-content: end;
     }
-    &.no-wrap {
-      flex-wrap: nowrap;
+    &._r {
+      place-items: end;
     }
-    &.stretch-all {
-      align-items: stretch;
+    &.x {
+      justify-content: center;
     }
-    &.grow-all > * {
-      flex: 1 1 auto;
+    &.y {
+      align-content: center;
     }
-    //Alias for stretch and grow
-    &.fill-all {
-      align-items: stretch;
-      > * {
-        flex: 1 1 auto;
-      }
+    &._c {
+      place-items: center;
     }
-    //This section and nav overwrite might be an anit-pattern
-    & > section,
-    & > nav {
-      align-self: stretch;
+    &._x {
+      justify-items: center;
+    }
+    &._y {
+      align-items: center;
     }
     & > * {
-      &.baseline {
-        align-self: baseline;
+      &.-c {
+        place-self: center;
       }
+      &.-x {
+        justify-self: center;
+      }
+      &.-y {
+        align-self: center;
+      }
+      &.-l {
+        justify-self: start;
+      }
+      &.-r {
+        justify-self: end;
+      }
+      &.-b {
+        align-self: end;
+      }
+      &.-t {
+        align-self: start;
+      }
+    }
+  }
+  & > .spacer {
+  }
+  .gap {
+    gap: 10vmin;
+  }
+  .gap-sm {
+    gap: 5vmin;
+  }
+  .gap-lg {
+    gap: 20vmin;
+  }
 
-      &.stretch {
-        align-self: stretch;
+  .grid-all > * {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16px, 1fr));
+  }
+}
+/* Row
+============================================================================= */
+@mixin row() {
+  .row {
+    width: fit-content;
+    width: -moz-fit-content;
+    display: flex;
+    justify-content: center;
+    &.wrap {
+      flex-wrap: wrap;
+    }
+    & > * {
+      flex: 1 1 auto;
+    }
+    // not used: align-content
+    &.t,
+    &.b,
+    &._l,
+    & > .-l,
+    &.r,
+    & > .-r {
+      &::before {
+        @include warning('Not used in rows');
       }
-      &.grow {
-        flex-grow: 1;
+    }
+
+    &.y {
+      align-content: center;
+    }
+    &._y {
+      align-items: center;
+    }
+    & > .-y {
+      align-self: center;
+    }
+
+    //c
+    &.c {
+      align-items: center;
+      justify-content: center;
+    }
+    &.-c {
+      align-self: center;
+      flex: 0 1 0;
+    }
+    &._c {
+      align-items: center;
+      & > * {
+        flex: 0 1 0;
       }
-      //Alias for stretch and grow
-      &.fill {
-        align-self: stretch;
-        flex-grow: 1;
+    }
+
+    //x
+    &._x > *,
+    & > .-x {
+      flex: 0 1 0;
+    }
+    &._g > *,
+    & > .-g {
+      flex: 1 0 auto;
+    }
+
+    //sb,sa,se content
+    /*
+&.t {
+  align-content: flex-start;
+}
+&.b {
+  align-content: flex-end;
+}
+*/
+    &.l {
+      justify-content: flex-start;
+    }
+    &.r {
+      justify-content: flex-end;
+    }
+    &.x {
+      justify-content: center;
+    }
+
+    &._t {
+      align-items: flex-start;
+    }
+    & > .-t {
+      align-self: flex-start;
+    }
+
+    &._b {
+      align-items: flex-end;
+    }
+    & > .-b {
+      align-self: flex-end;
+    }
+
+    /*
+&._v {
+  align-items: baseline;
+}
+& > .-v {
+  align-self: baseline;
+}
+*/
+
+    &._s {
+      align-items: stretch;
+    }
+    & > .-s {
+      align-self: stretch;
+    }
+
+    //y
+    /*
+*/
+  }
+}
+/* Block
+============================================================================= */
+@mixin block() {
+  .block {
+    width: fit-content;
+    width: -moz-fit-content;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    & > * {
+      flex: 1 1 auto;
+    }
+    // not used: align-content
+    &.l,
+    &.r,
+    &._t,
+    & > .-t,
+    &.b,
+    & > .-b {
+      &::before {
+        @include warning('Not used in blocks');
       }
+    }
+    //x
+
+    &.x {
+      align-content: center;
+    }
+    &._x {
+      align-items: center;
+    }
+    & > .-x {
+      align-self: center;
+    }
+
+    //c
+    &.c {
+      align-items: center;
+      justify-content: center;
+    }
+    &._c {
+      align-items: center;
+      & > * {
+        flex: 0 1 0;
+      }
+    }
+    & > .-c {
+      align-self: center;
+      flex: 0 1 0;
+    }
+
+    //y
+    &._y > *,
+    & > .-y {
+      flex: 0 1 0;
+    }
+    &._g > *,
+    & > .-g {
+      flex: 1 0 auto;
+    }
+
+    //sb,sa,se content
+    /*
+&.l {
+  align-content: flex-start;
+}
+&.r {
+  align-content: flex-end;
+}
+*/
+    &.t {
+      justify-content: flex-start;
+    }
+    &.b {
+      justify-content: flex-end;
+    }
+    &.y {
+      justify-content: center;
+    }
+
+    &._l {
+      align-items: flex-start;
+    }
+    & > .-l {
+      align-self: flex-start;
+    }
+
+    &._r {
+      align-items: flex-end;
+    }
+    & > .-r {
+      align-self: flex-end;
+    }
+
+    /*
+&._v {
+  align-items: baseline;
+}
+& > .-v {
+  align-self: baseline;
+}
+*/
+
+    &._s {
+      align-items: stretch;
+    }
+    & > .-s {
+      align-self: stretch;
+    }
+
+    & > .spacer {
+      flex: 1 0 auto;
     }
   }
 }
 
-//Flexbox
-//Sizing
 //Containers
-.w-full {
-  width: 100%;
-}
-.h-full {
+/* Sizing
+============================================================================= */
+.h-100 {
   height: 100%;
-}
-.w-screen {
-  width: 100vw;
 }
 .h-screen {
   height: 100vh;
 }
-//Width - min max
-.w-max-xxs {
-  max-width: $xxs;
+
+// Width
+.w-100 {
+  width: 100%;
 }
-.w-max-xs {
-  max-width: $xs;
+.w-75 {
+  width: 75%;
 }
-.w-max-sm {
-  max-width: $sm;
+.w-50 {
+  width: 50%;
 }
-.w-max-md {
-  max-width: $md;
+.w-25 {
+  width: 25%;
 }
-.w-max-lg {
-  max-width: $lg;
+.w-screen {
+  width: 100vw;
 }
 
-//Height - min max
-//Grid
+// Floats
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
 
-@include blockObjects {
-  display: block;
+.box > .box::before {
+  @include warning("Don't put a box in a box!");
 }
-@include contentObjects {
-  display: block;
-}
+
+/* Output
+============================================================================= */
+
+@include grid;
+@include block;
+@include row;

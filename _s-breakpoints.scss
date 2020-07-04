@@ -77,24 +77,135 @@ $bps: (
   }
 }
 
+@mixin x($bp, $mult: 1) {
+  $bpV: map-get($bps, $bp);
+  max-width: $bpV - ($block * $mult);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin y($bp, $mult: 1) {
+  $bpV: map-get($bps, $bp);
+  max-width: $bpV - ($block * $mult);
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@mixin t($bp, $mult: 1) {
+  $bpV: map-get($bps, $bp);
+  max-width: $bpV - ($block * $mult);
+  margin-bottom: auto;
+}
+@mixin b($bp, $mult: 1) {
+  $bpV: map-get($bps, $bp);
+  max-width: $bpV - ($block * $mult);
+  margin-top: auto;
+}
+@mixin l($bp, $mult: 1) {
+  $bpV: map-get($bps, $bp);
+  max-width: $bpV - ($block * $mult);
+  margin-right: auto;
+}
+@mixin r($bp, $mult: 1) {
+  $bpV: map-get($bps, $bp);
+  max-width: $bpV - ($block * $mult);
+  margin-left: auto;
+}
+
+@mixin box($val, $bp) {
+  &.#{$val},
+  &.#{$val}\@#{$bp},
+  &._#{$val} > *:not(.el),
+  &._#{$val}\@#{$bp} > *:not(.el) {
+    @if $val == x {
+      @include x($bp);
+    }
+    @if $val == y {
+      @include y($bp);
+    }
+    @if $val == t {
+      @include t($bp);
+    }
+    @if $val == b {
+      @include b($bp);
+    }
+    @if $val == r {
+      @include r($bp);
+    }
+    @if $val == l {
+      @include l($bp);
+    }
+  }
+}
+
 @mixin bp-utils($bp) {
-  .#{$bp}-display-none {
+  $bp-count: map-get($bps, $bp) / $block;
+  $bpV: map-get($bps, $bp);
+
+  //@each $oKey, $oVal in $size-options {
+    //@each $mKey, $mVal in $multipliers {
+      //$key: #{$oKey}#{$mKey};
+      //.#{$key} {
+        //#{$oVal}: 25% * $mVal;
+      //}
+      //._#{$key} > * {
+        //#{$oVal}: 25% * $mVal;
+      //}
+    //}
+  //}
+
+  .dn\@#{$bp} {
     display: none;
   }
-  .#{$bp}-display {
+  .d\@#{$bp} {
     display: unset;
   }
-  .#{$bp}-w-max {
+  .w\@#{$bp} {
     max-width: #{map-get($bps, $bp)};
   }
-  .#{$bp}-display-grid {
-    @include d-grid-display($bp);
-  }
-  .#{$bp}-font-size-smaller {
-    font-size: 0.8em;
-  }
-  .#{$bp}-font-size-larger {
-    font-size: 1.2em;
+  .box {
+    display: block;
+    width: 100%;
+    min-width: $d-box-min-width;
+    @include box(x, $bp);
+    & > .-x {
+      max-width: $bpV - ($block * 2) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    & > .-c {
+      margin: auto !important;
+      max-width: max-content !important;
+    }
+    & > .-c\@#{$bp} {
+      margin: auto !important;
+      max-width: max-content !important;
+    }
+
+    @include box(t, $bp);
+    & > .-t {
+      max-width: $bpV - ($block * 2) !important;
+      margin-bottom: auto !important;
+      margin-top: 0 !important;
+    }
+    @include box(b, $bp);
+    & > .-b {
+      max-width: $bpV - ($block * 2) !important;
+      margin-top: auto !important;
+      margin-bottom: 0 !important;
+    }
+    @include box(r, $bp);
+    & > .-r {
+      max-width: $bpV - ($block * 2) !important;
+      margin-left: auto !important;
+      margin-right: 0 !important;
+    }
+    @include box(l, $bp);
+    & > .-l {
+      max-width: $bpV - ($block * 2) !important;
+      margin-right: auto !important;
+      margin-left: 0 !important;
+    }
   }
 }
 
@@ -109,6 +220,10 @@ $bps: (
 
 // Child Mixins
 //TODO: make the this a loop function
+@each $bKey, $bp in $bps {
+  @include bp($bKey);
+}
+
 @mixin bl($stop: huge) {
   @include bp(bl, $stop) {
     @content;
@@ -175,7 +290,7 @@ $bps: (
 //TODO: make the this a loop function
 @mixin bps-debug {
   .bps-debug {
-    @media (max-width: 370px) {
+    @media (max-width: 300px) {
       // Show that we don't need to size for this small
       display: none;
     }
@@ -184,7 +299,7 @@ $bps: (
       @include bps-debug-utils(xxs, green);
     }
     @include xs {
-      @include bps-debug-utils(xs, red);
+      @include bps-debug-utils(xs, #ff7b7b);
     }
     @include sm {
       @include bps-debug-utils(sm, orange);
@@ -193,13 +308,13 @@ $bps: (
       @include bps-debug-utils(md, yellow);
     }
     @include lm {
-      @include bps-debug-utils(lm, green);
+      @include bps-debug-utils(lm, #46cc46);
     }
     @include lg {
-      @include bps-debug-utils(lg, blue);
+      @include bps-debug-utils(lg, #5454ff);
     }
     @include xl {
-      @include bps-debug-utils(xl, indigo);
+      @include bps-debug-utils(xl, #bc67fb);
     }
     @include xxl {
       @include bps-debug-utils(xxl, violet);
@@ -208,7 +323,10 @@ $bps: (
 }
 
 @mixin site-layout {
-  .display-none {
+  .dn {
+    display: none;
+  }
+  ._dn > * {
     display: none;
   }
   @include xxs {
@@ -281,6 +399,11 @@ $bps: (
 
 .app {
   height: 100%;
-  @include site-layout;
 }
 */
+
+/* Output
+============================================================================= */
+
+@include site-layout;
+@include bps-debug;

@@ -13,14 +13,17 @@
 
 /* Global
 ========================================================================== */
-$d-bit: 1rem; //16px
+// $d-bit: 1rem; //16px
+$d-bit: 16px; //16px
 $d-byte: $d-bit * 8; //128px
 $d-width: $d-byte;
 $d-height: $d-bit * 4;
 
 $d-spacer-unit: $d-bit * 0.8;
 // $d-spacer-relative: 0.6em;
-$d-transition: all 0.2s;
+// $d-transition: all 0.2s;
+$d-transition: all 0.2s ease-in-out 0s;
+$d-transition-slow: all 5s ease-in-out 0s;
 $d-box-sizing: border-box;
 $d-transparency: 0.2;
 
@@ -43,16 +46,21 @@ $d-color-primary: $d-blue;
 /* Typography
 ========================================================================== */
 
-$d-font-family: Helvetica, Arial, sans-serif;
+$d-font-family: Helvetica, 'Liberation Sans', Arial, sans-serif;
+$d-headings-font-weight: 700;
 $d-code-font-family: 'Fira Code', Consolas, 'Lucida Console',
   'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
   'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace;
 
 //Font Size
-$d-font-size: 0.75rem;
+$d-font-size: 1rem;
 $d-font-weight: 400;
+$d-font-color: #252525;
 
-$d-headings-font-weight: 500;
+//Line Height
+$d-line-height: 1.5; // at 1rem of 16px, that gives a line of 24px
+
+$d-headings-font-weight: 600;
 $d-headings-font-family: $d-font-family;
 
 /* Breakpoints
@@ -71,6 +79,8 @@ $lg: $block * 8;
 $xl: $block * 9;
 $xxl: $block * 10;
 $huge: $block * 20;
+
+$d-box-min-width: $sec;
 
 /* Spacing - Padding
 ========================================================================== */
@@ -93,8 +103,6 @@ $d-main-height: 99vh;
 //used in u-generic
 // Lists
 $d-list-style-type: none;
-//Line Height
-$d-line-height: 1.5; // at 1rem of 16px, that gives a line of 24px
 //Text-Align
 $d-text-align: center;
 //Box Shadows
@@ -118,7 +126,7 @@ $d-input-color: $d-black;
 $d-input-background-color: #fff;
 $d-input-placeholder-color: $d-black;
 $d-input-invalid-background-color: #fff;
-$d-input-invalid-required-background-color: #cf13131a;
+$d-input-invalid-required-background-color: #ffc3c3;
 
 $d-input-box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.2);
 
@@ -127,8 +135,8 @@ $d-button-font-size: $d-font-size;
 $d-button-padding: $d-padding-x $d-padding-y;
 
 $d-button-color: #fff;
-$d-button-background-color: $d-color-blue;
-$d-button-hover-background-color: $d-color-blue-dark;
+$d-button-background-color: $d-blue;
+$d-button-hover-background-color: $d-blue-dark;
 
 $d-button-secondary-color: #444;
 $d-button-secondary-background-color: #ddd;
@@ -138,6 +146,36 @@ $d-button-invalid-color: #777;
 $d-button-invalid-background-color: #eee;
 
 //Links
-$d-link-color: $d-color-blue;
-$d-link-hover-color: $d-color-blue-light;
+$d-link-color: $d-blue;
+$d-link-hover-color: $d-blue-light;
 $d-link-padding: $d-padding-x $d-padding-y;
+
+//Styling Multipliers
+$multipliers: (
+  '__': 0.25,
+  '_': 0.5,
+  '--': 0.75,
+  '-': 0.875,
+  '': 1,
+  '\\+': 1.25,
+  '\\+\\+': 1.5,
+  '\\*': 2,
+  '\\*\\*': 2.75,
+);
+
+$size-options: (
+  'w': 'max-width',
+  'h': 'max-height',
+);
+
+$directions: (
+  '': '',
+  'l': '-left',
+  'r': '-right',
+  't': '-top',
+  'b': '-bottom',
+);
+$spacing-options: (
+  'p': 'padding',
+  'm': 'margin',
+);

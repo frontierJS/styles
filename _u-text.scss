@@ -1,97 +1,284 @@
-.font-weight-100 {
-  font-weight: 100;
+.vy {
+  line-height: $d-line-height;
 }
-.font-weight-200 {
-  font-weight: 200;
+.vy__ {
+  line-height: 0.5;
 }
-.font-weight-300 {
-  font-weight: 300;
-}
-.font-weight-600 {
-  font-weight: 600;
-}
-
-@mixin font-size($mult: 1) {
-  &.font-size-xxs {
-    font-size: 0.5rem * $mult;
-  }
-  &.font-size-xs {
-    font-size: 0.75rem * $mult;
-  }
-  &.font-size-sm {
-    font-size: 0.875rem * $mult;
-  }
-  &.font-size-md {
-    font-size: 1rem * $mult;
-  }
-  &.font-size-lm {
-    font-size: 1.25rem * $mult;
-  }
-  &.font-size-lg {
-    font-size: 1.5rem * $mult;
-  }
-  &.font-size-xl {
-    font-size: 2rem * $mult;
-  }
-  &.font-size-xxl {
-    font-size: 3rem * $mult;
-  }
-}
-
-.line-h-1 {
+.vy_ {
   line-height: 1;
 }
-.line-h {
-  line-height: $d-line-height;
+.vy-- {
+  line-height: 1.25;
 }
-.line-h-2 {
+.vy- {
+  line-height: 1.375;
+}
+.vy\+ {
+  line-height: 1.625;
+}
+.vy\+\+ {
   line-height: 2;
 }
-
-@mixin font-settings {
-  font-size: $d-font-size;
-  line-height: $d-line-height;
-  @include md {
-    font-size: 0.875rem;
-  }
-  @include lg {
-    font-size: 1rem;
-  }
+.vy\* {
+  line-height: 2.5;
 }
-@mixin text-align() {
-  &.align {
-    text-align: $d-text-align;
-  }
-  &.text-align-left {
-    text-align: left;
-  }
-  &.text-align-right {
-    text-align: right;
-  }
-  &.text-align-center {
-    text-align: center;
-  }
+.vy\*\* {
+  line-height: 3;
 }
-
-h1 {
-  font-size: $d-font-size * 3;
-  font-weight: 700;
+// Letter Spacing
+.vx {
+  letter-spacing: 0;
 }
-h2 {
-  font-size: $d-font-size * 2;
-  font-weight: 700;
+.vx__ {
+  letter-spacing: -0.1rem;
 }
-h3 {
-  font-size: $d-font-size * 1.5;
-  font-weight: 500;
+.vx_ {
+  letter-spacing: -0.0625rem;
+}
+.vx-- {
+  letter-spacing: -0.05rem;
+}
+.vx- {
+  letter-spacing: -0.025em;
+}
+.vx\+ {
+  letter-spacing: 0.025em;
+}
+.vx\+\+ {
+  letter-spacing: 0.05em;
+}
+.vx\* {
+  line-height: 0.1em;
+}
+.vx\*\* {
+  line-height: 0.15em;
 }
 
-@include textObjects {
+.vl {
+  text-align: left;
+}
+.vr {
+  text-align: right;
+}
+.vc {
+  text-align: center;
+}
+
+//Font Weights
+@for $i from 1 through 9 {
+  .v#{$i + '00'} {
+    font-weight: $i * 100;
+  }
+}
+
+/* Output
+============================================================================= */
+//v. _v for  visual text:
+// color, transform (like uppercase lowercase)
+// v-primary
+// v-black, or v-gray-500
+
+// Define elements and blocks
+// Elements
+// p,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// span,
+// input,
+// img,
+// button,
+// small,
+// sub,
+// sup,
+// li,
+// a
+
+//Blocks and/or containers?
+// section,
+// article,
+// aside,
+// div,
+// header,
+// footer,
+// ul,
+// ol,
+// nav
+
+@mixin block-children($dir, $value) {
+  &._#{$dir} {
+    align-items: $value !important;
+  }
+  & > .-#{$dir} {
+    align-self: $value !important;
+  }
+}
+.block {
+  display: flex;
+  flex-flow: column;
+  @include block-children(r, end);
+  @include block-children(l, start);
+  @include block-children(c, center);
+  @include block-children(s, stretch);
+  &.t {
+    justify-content: start !important;
+  }
+  &.b {
+    justify-content: end !important;
+  }
+  &.y {
+    justify-content: center !important;
+  }
+  &.x {
+    align-items: center !important;
+  }
+  &.c {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  & > .-c {
+    align-self: center !important;
+  }
+  &.s {
+    justify-content: stretch !important;
+  }
+  & > .-s {
+    align-self: stretch !important;
+  }
+}
+
+@mixin el-children($dir, $value) {
+  &._#{$dir} {
+    text-align: $value !important;
+  }
+}
+.el {
+  @include el-children(l, left);
+  @include el-children(r, right);
+  @include el-children(c, center);
+  &.c {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+  }
+  &.x {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+  }
+  &.y {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+  }
+  &.t {
+    display: flex;
+    flex-flow: row;
+    align-items: start;
+  }
+  &.b {
+    display: flex;
+    flex-flow: row;
+    align-items: end;
+  }
+  &.l {
+    display: flex;
+    flex-flow: row;
+    justify-content: start;
+  }
+  &.r {
+    display: flex;
+    flex-flow: row;
+    justify-content: end;
+  }
+  &.sb {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+  }
+  &.sa {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+  }
+  &.se {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+  }
+}
+
+p,
+span {
+  &.grid,
+  &.box {
+    &:before {
+      content: "Don't use this tag for a grid or box";
+      border: 5px solid red;
+    }
+  }
+}
+
+/* Visual Text
+============================================================================= */
+@each $mKey, $mVal in $multipliers {
+  $key: v#{$mKey};
+  .#{$key} {
+    font-size: 1em * $mVal;
+  }
+  ._#{$key} > * {
+    font-size: 1em * $mVal;
+  }
+}
+
+/* Visual Text REM Override
+============================================================================= */
+@each $mKey, $mVal in $multipliers {
+  $key: v#{$mKey};
+  .-#{$key} {
+    font-size: 1rem * $mVal;
+  }
+}
+
+/* Text
+============================================================================= */
+.text {
   display: inline-block;
-  line-height: $d-line-height;
+  padding-left: $d-padding-x / 2;
+  padding-right: $d-padding-y / 2;
 }
 
-@include contentObjects {
-  @include font-size;
-  @include text-align;
+.text {
+  &.a {
+  }
+  &.c {
+  }
+  &.x {
+  }
+  &.y {
+  }
+  &.s {
+  }
+  &.l {
+  }
+  &.r {
+  }
+  &.t {
+  }
+  &.b {
+  }
+  //sa,sb,se
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
+}
+.capitalize {
+  text-transform: capitalize;
 }

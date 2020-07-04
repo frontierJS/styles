@@ -1,21 +1,28 @@
-$d-base-font-family: Helvetica;
-$d-base-font-size: 1rem;
-$d-base-line-height: 1.5;
-$d-headings-font-weight: 700;
+//TODO add a if flag to use frontier default base or not
 
+// @if $frontier-defaults {}
 *,
-*:before,
-*:after {
+::before,
+::after {
   box-sizing: border-box;
+}
+html {
+  min-height: 100vh;
 }
 
 body {
-  font-family: $d-base-font-family;
-  font-size: $d-base-font-size;
-  line-height: $d-base-line-height;
-  color: #333;
+  font-family: $d-font-family;
+  font-size: $d-font-size;
+  line-height: $d-line-height;
+
+  color: $d-font-color;
   background: #fff;
   font-feature-settings: 'liga', 'kern';
+  min-height: 100vh;
+}
+
+form {
+  display: block;
 }
 
 img,
@@ -34,6 +41,7 @@ select {
 em,
 i {
   font-style: italic;
+  letter-spacing: 0.05em;
 }
 
 strong,
@@ -58,8 +66,6 @@ ul,
 ol,
 li {
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 a,
@@ -72,5 +78,116 @@ a,
   &:hover {
     background-color: transparent;
     color: $d-link-hover-color;
+  }
+}
+
+small,
+.small {
+  font-size: 0.5em;
+}
+big,
+.big {
+  font-size: 2em;
+}
+
+h1,
+.h1 {
+  font-size: $d-font-size * 2.75;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
+
+h2,
+.h2 {
+  font-size: $d-font-size * 2;
+  font-weight: 700;
+  letter-spacing: 0.0125em;
+}
+
+h3,
+.h3 {
+  font-size: $d-font-size * 1.5;
+  font-weight: 600;
+}
+
+h4,
+.h4 {
+  font-size: $d-font-size * 1.25;
+  font-weight: 600;
+}
+
+h5,
+.h5 {
+  font-size: $d-font-size;
+  font-weight: 600;
+}
+
+h6,
+.h6 {
+  font-size: $d-font-size;
+  font-weight: 600;
+  display: inline-block;
+}
+
+hr {
+  border-width: 0 0 2px;
+  border-color: $d-border-color;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  // height: 0;
+  // overflow: visible;
+}
+span,
+input,
+img,
+button,
+small,
+big,
+sub,
+sup,
+i,
+b,
+a {
+  display: inline-block;
+  line-height: $d-line-height;
+}
+//br
+//blockquote
+
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+@mixin elements-debug($el, $color) {
+  .#{$el} {
+    background-color: $color;
+    border: 1px solid darken($color, 10%);
+    & > * {
+      background-color: lighten($color, 20%);
+    }
+  }
+}
+@mixin el-debug() {
+  @include elements-debug(grid, green);
+  @include elements-debug(box, #3232cc);
+  @include elements-debug(block, #b22222);
+  @include elements-debug(el, #b0b045);
+}
+
+// @include el-debug;
+
+:root {
+  font-size: 12px;
+}
+@media (min-width: $sm) {
+  :root {
+    font-size: 14px;
+  }
+}
+@media (min-width: $lg) {
+  :root {
+    font-size: 16px;
   }
 }

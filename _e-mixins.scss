@@ -1,3 +1,19 @@
+@mixin warning($message) {
+  content: 'FCSS Warning: #{$message}';
+  display: block;
+  background-color: #b22;
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+}
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
+
 /// Adds a browser prefix to the property
 /// @param {*} $property Property
 /// @param {*} $value Value
@@ -40,7 +56,7 @@
   @if length($properties) >= 1 {
     @include css3-prefix('transition', $properties);
   } @else {
-    @include css3-prefix('transition', 'all 0.2s ease-in-out 0s');
+    @include css3-prefix('transition', $d-transition);
   }
 }
 
@@ -84,53 +100,4 @@
   }
 
   @return $x1;
-}
-
-@mixin blockObjects() {
-  section,
-  div,
-  article,
-  header,
-  footer,
-  nav {
-    @content;
-  }
-}
-
-@mixin contentObjects() {
-  //header, footer form?
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    display: block;
-    @content;
-  }
-}
-@mixin contentObjects() {
-  //header, footer form?
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    display: block;
-    @content;
-  }
-}
-
-@mixin textObjects() {
-  span,
-  input,
-  img,
-  button,
-  a {
-    display: inline-block;
-    @content;
-  }
 }
