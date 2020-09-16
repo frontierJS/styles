@@ -201,25 +201,8 @@ $p-axises: x, y;
   color: #ccc;
 }
 
-.w1 {
-  width: 100%;
-  max-width: 128px;
-}
-.mw {
-  width: 100%;
-  max-width: 100%;
-}
-
-.mw1 {
-  width: 100%;
-  min-width: 128px;
-}
-
-.mw\@m {
-  width: 100%;
-  max-width: 5 * 128px;
-}
-
+/* Width
+============================================================================= */
 .w__ {
   width: 18vmin;
 }
@@ -234,6 +217,7 @@ $p-axises: x, y;
 }
 .w {
   width: 36vmin;
+  // width: 100%;
 }
 .w\+ {
   width: 40vmin;
@@ -250,6 +234,59 @@ $p-axises: x, y;
   width: 68vmin;
 }
 
+/* Max Width
+============================================================================= */
+.i {
+  width: 100%;
+  max-width: 100%;
+}
+
+.i\@m {
+  width: 100%;
+  max-width: 5 * 128px;
+}
+
+.i__ {
+  width: 100%;
+  max-width: 18vmin;
+}
+.i_ {
+  width: 100%;
+  max-width: 22vmin;
+}
+.i-- {
+  width: 100%;
+  max-width: 28vmin;
+}
+.i {
+  width: 100%;
+  max-width: 100%;
+}
+.i- {
+  width: 100%;
+  max-width: 32vmin;
+}
+.i\+ {
+  width: 100%;
+  max-width: 40vmin;
+}
+
+.i\+\+ {
+  width: 100%;
+  max-width: 44vmin;
+}
+.i\* {
+  width: 100%;
+  max-width: 54vmin;
+}
+
+.i\*\* {
+  width: 100%;
+  max-width: 68vmin;
+}
+
+/* Height
+============================================================================= */
 .h__ {
   height: 18vmin;
 }
@@ -278,4 +315,61 @@ $p-axises: x, y;
 
 .h\*\* {
   height: 68vmin;
+}
+
+/* Max Height
+============================================================================= */
+
+.e__ {
+  height: 100%;
+  max-height: 18vmax;
+}
+.e_ {
+  height: 100%;
+  max-height: 22vmax;
+}
+.e-- {
+  height: 100%;
+  max-height: 28vmax;
+}
+.e- {
+  height: 100%;
+  max-height: 32vmax;
+}
+.e {
+  height: 100%;
+  max-height: 36vmax;
+}
+.e\+ {
+  height: 100%;
+  max-height: 40vmax;
+}
+
+.e\+\+ {
+  height: 100%;
+  max-height: 44vmax;
+}
+.e\* {
+  height: 100%;
+  max-height: 54vmax;
+}
+
+.e\*\* {
+  height: 100%;
+  max-height: 68vmax;
+}
+
+/* Overflow
+/ overflow:  visible | hidden | scroll | auto | inherit
+============================================================================= */
+
+.o {
+  overflow: auto;
+}
+.ox {
+  overflow-x: auto;
+}
+
+.oy {
+  overflow-y: auto;
 }

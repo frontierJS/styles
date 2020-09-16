@@ -131,7 +131,7 @@
       align-items: center;
       justify-content: center;
     }
-    &.-c {
+    & > .-c {
       align-self: center;
       flex: 0 1 0;
     }
