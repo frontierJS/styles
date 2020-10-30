@@ -2761,10 +2761,10 @@ span.box:before {
 .bg {
   background-color: #f1f5ff; }
 
-.br {
+.border {
   border: 1px solid #111; }
 
-.brn {
+.border-none {
   border: none; }
 
 /* Margin
