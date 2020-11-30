@@ -90,6 +90,7 @@
     grid-template-columns: repeat(auto-fit, minmax(16px, 1fr));
   }
 }
+
 /* Row
 ============================================================================= */
 @mixin row() {
@@ -184,28 +185,15 @@
     & > .-b {
       align-self: flex-end;
     }
-
-    /*
-&._v {
-  align-items: baseline;
-}
-& > .-v {
-  align-self: baseline;
-}
-*/
-
     &._s {
       align-items: stretch;
     }
     & > .-s {
       align-self: stretch;
     }
-
-    //y
-    /*
-*/
   }
 }
+
 /* Block
 ============================================================================= */
 @mixin block() {
@@ -213,18 +201,15 @@
     width: fit-content;
     width: -moz-fit-content;
     display: flex;
-    justify-content: center;
+    //justify-content: center;
     flex-flow: column;
     & > * {
-      flex: 1 1 auto;
+      // flex: 1 1 auto;
     }
     // not used: align-content
     &.l,
     &.r,
-    &._t,
-    & > .-t,
-    &.b,
-    & > .-b {
+    &.b {
       &::before {
         @include warning('Not used in blocks');
       }
@@ -299,15 +284,23 @@
     & > .-r {
       align-self: flex-end;
     }
-
-    /*
-&._v {
-  align-items: baseline;
-}
-& > .-v {
-  align-self: baseline;
-}
-*/
+    &._t > * {
+      margin-bottom: auto;
+      margin-top: 0;
+    }
+    & > .-t {
+      margin-bottom: auto;
+      margin-top: 0;
+    }
+    &._b > * {
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+    & > .-b {
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+    
 
     &._s {
       align-items: stretch;
@@ -322,7 +315,7 @@
   }
 }
 
-//Containers
+// Containers
 /* Sizing
 ============================================================================= */
 .h-100 {
@@ -355,10 +348,6 @@
 }
 .fr {
   float: right;
-}
-
-.box > .box::before {
-  @include warning("Don't put a box in a box!");
 }
 
 /* Output
