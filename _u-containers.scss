@@ -298,14 +298,26 @@
     &._t {
       align-items: start;
     }
+    & > .-t {
+      align-self: start;
+    }
     &._b {
       align-items: end;
+    }
+     & > .-b {
+      align-self: end;
     }
     &._c {
       align-items: center;
     }
+    & > .-c {
+      align-self: center;
+    }
     &._s {
       align-items: stretch;
+    }
+    & > .-s {
+      align-self: stretch;
     }
   }
   .fy,
@@ -319,14 +331,26 @@
     &._l {
       align-items: start;
     }
+    & > .-l {
+      align-self: start;
+    }
     &._r {
       align-items: end;
+    }
+    & > .-r {
+      align-self: end;
     }
     &._c {
       align-items: center;
     }
+    & > .-c {
+      align-self: center;
+    }
     &._s {
       align-items: stretch;
+    }
+    & > .-s {
+      align-self: stretch;
     }
   }
 }
