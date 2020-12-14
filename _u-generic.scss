@@ -1,5 +1,26 @@
-//TODO revisit where markdown should live
+/* Overview
+  .m[l | r | t | b | x | y | a | n] = Margin *
+  .p[l | r | t | b | x | y | n] = Padding *
+  .w[l | r | t | b | x | y] = Width *
+  .i[l | r | t | b | x | y] = Max-width *
+  .h[l | r | t | b | x | y] = Height *
+  .e[l | r | t | b | x | y] = Max-height *
 
+  * [Can use multipiers]
+    [__, _, --, -, +, ++, *, **]
+    [Can be applied to children using (.-)]
+
+  .o[x | y] = Overflow
+  .hide, .show = Visibility
+
+  .border
+  .background
+  .debug
+  .ellipsis
+  .pointer
+============================================================================= */
+
+//TODO revisit where markdown should live
 .reader,
 .markdown {
   font-family: Montserrat, sans-serif;
@@ -28,7 +49,7 @@
   cursor: pointer;
 }
 
-.bg {
+.background {
   // background-color: $d-background-color;
   background-color: #f1f5ff;
 }
@@ -188,7 +209,7 @@ $p-axises: x, y;
   }
 }
 .w\@vw {
-  height: 100vw;
+  width: 100vw;
 }
 .h\@vh {
   height: 100vh;
@@ -372,4 +393,11 @@ $p-axises: x, y;
 
 .oy {
   overflow-y: auto;
+}
+
+.ellipsis {
+text-overflow: ellipsis;
+overflow: hidden;
+//white-space: nowrap;
+//content: '\u2026';
 }

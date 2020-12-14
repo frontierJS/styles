@@ -1,10 +1,12 @@
 /* Grid
 ============================================================================= */
 @mixin grid() {
-  .grid {
+  .g {
     display: grid;
-    grid-auto-flow: row;
-    &.columns {
+    &x {
+      grid-auto-flow: row;
+    }
+    &y {
       grid-auto-flow: column;
     }
     &.s {
@@ -72,22 +74,6 @@
         align-self: start;
       }
     }
-  }
-  & > .spacer {
-  }
-  .gap {
-    gap: 10vmin;
-  }
-  .gap-sm {
-    gap: 5vmin;
-  }
-  .gap-lg {
-    gap: 20vmin;
-  }
-
-  .grid-all > * {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16px, 1fr));
   }
 }
 
@@ -194,6 +180,156 @@
   }
 }
 
+/* Flex
+============================================================================= */
+@mixin flex() {
+  .f {
+    display: flex;
+    &x {
+      display: flex;
+      flex-flow: row;
+      justify-content: center;
+      align-items: stretch;
+    }
+    &xc {
+      display: flex;
+      flex-flow: row;
+      justify-content: center;
+      align-items: stretch;
+    }
+    &xg {
+      display: flex;
+      flex-flow: row;
+      align-items: stretch;
+      & > * {
+        flex: 1;
+      }
+    }
+    &xl {
+      display: flex;
+      flex-flow: row;
+      justify-content: start;
+      align-items: stretch;
+    }
+    &xr {
+      display: flex;
+      flex-flow: row;
+      justify-content: end;
+      align-items: stretch;
+    }
+    &xsa {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-around;
+      align-items: stretch;
+    }
+    &xsb {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: stretch;
+    }
+    &xse {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-evenly;
+      align-items: stretch;
+    }
+    &y {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: stretch;
+    }
+    &yc {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: stretch;
+    }
+    &yg {
+      display: flex;
+      flex-flow: column;
+      align-items: stretch;
+      & > * {
+        flex: 1;
+      }
+    }
+    &yt {
+      display: flex;
+      flex-flow: column;
+      justify-content: start;
+      align-items: stretch;
+    }
+    &yb {
+      display: flex;
+      flex-flow: column;
+      justify-content: end;
+      align-items: stretch;
+    }
+    &ysa {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-around;
+      align-items: stretch;
+    }
+    &ysb {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      align-items: stretch;
+    }
+    &yse {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-evenly;
+      align-items: stretch;
+    }
+  }
+
+  .fx,
+  .fxc,
+  .fxl,
+  .fxr,
+  .fxsa,
+  .fxsb,
+  .fxse,
+  .fxg {
+    &._t {
+      align-items: start;
+    }
+    &._b {
+      align-items: end;
+    }
+    &._c {
+      align-items: center;
+    }
+    &._s {
+      align-items: stretch;
+    }
+  }
+  .fy,
+  .fyc,
+  .fyt,
+  .fyb,
+  .fysa,
+  .fysb,
+  .fyse,
+  .fyg {
+    &._l {
+      align-items: start;
+    }
+    &._r {
+      align-items: end;
+    }
+    &._c {
+      align-items: center;
+    }
+    &._s {
+      align-items: stretch;
+    }
+  }
+}
 /* Block
 ============================================================================= */
 @mixin block() {
@@ -300,7 +436,6 @@
       margin-top: auto;
       margin-bottom: 0;
     }
-    
 
     &._s {
       align-items: stretch;
@@ -308,51 +443,40 @@
     & > .-s {
       align-self: stretch;
     }
-
-    & > .spacer {
-      flex: 1 0 auto;
-    }
   }
 }
 
 // Containers
 /* Sizing
 ============================================================================= */
-.h-100 {
+.h100 {
   height: 100%;
 }
-.h-screen {
+.hscreen {
   height: 100vh;
 }
 
 // Width
-.w-100 {
+.w100 {
   width: 100%;
 }
-.w-75 {
+.w75 {
   width: 75%;
 }
-.w-50 {
+.w50 {
   width: 50%;
 }
-.w-25 {
+.w25 {
   width: 25%;
 }
-.w-screen {
+.wscreen {
   width: 100vw;
-}
-
-// Floats
-.fl {
-  float: left;
-}
-.fr {
-  float: right;
 }
 
 /* Output
 ============================================================================= */
 
 @include grid;
-@include block;
-@include row;
+@include flex;
+// @include block;
+// @include row;

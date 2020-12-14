@@ -1,3 +1,20 @@
+/* Overview
+  .v = Font Size relative em *
+  .-v = Font Size absolute rem override *
+  .vy = Line Height  *
+  .vx = Letter Spacing *
+
+  .v[l | c | r] = Text align [left | center | right]
+  .v[t | b  | a]  =  Text Transform [uppercase | lowercase | capitalize]
+  .v[100 .. 900]  = Font Weight
+
+  * [Can use multipiers]
+    [__, _, --, -, +, ++, *, **]
+============================================================================= */
+
+
+/*  Line Height
+============================================================================= */
 .vy {
   line-height: $d-line-height;
 }
@@ -25,7 +42,9 @@
 .vy\*\* {
   line-height: 3;
 }
-// Letter Spacing
+
+/* Letter Spacing
+============================================================================= */
 .vx {
   letter-spacing: 0;
 }
@@ -64,7 +83,8 @@
   text-align: center;
 }
 
-//Font Weights
+/* Font Weights
+============================================================================= */
 @for $i from 1 through 9 {
   .v#{$i + '00'} {
     font-weight: $i * 100;
@@ -244,41 +264,12 @@ span {
   }
 }
 
-/* Text
-============================================================================= */
-.text {
-  display: inline-block;
-  padding-left: $d-padding-x / 2;
-  padding-right: $d-padding-y / 2;
-}
-
-.text {
-  &.a {
-  }
-  &.c {
-  }
-  &.x {
-  }
-  &.y {
-  }
-  &.s {
-  }
-  &.l {
-  }
-  &.r {
-  }
-  &.t {
-  }
-  &.b {
-  }
-  //sa,sb,se
-}
-.uppercase {
+.vt, .uppercase {
   text-transform: uppercase;
 }
-.lowercase {
+.vb, .lowercase {
   text-transform: lowercase;
 }
-.capitalize {
+.va, .capitalize {
   text-transform: capitalize;
 }

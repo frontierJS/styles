@@ -143,15 +143,15 @@ $bps: (
   $bpV: map-get($bps, $bp);
 
   //@each $oKey, $oVal in $size-options {
-    //@each $mKey, $mVal in $multipliers {
-      //$key: #{$oKey}#{$mKey};
-      //.#{$key} {
-        //#{$oVal}: 25% * $mVal;
-      //}
-      //._#{$key} > * {
-        //#{$oVal}: 25% * $mVal;
-      //}
-    //}
+  //@each $mKey, $mVal in $multipliers {
+  //$key: #{$oKey}#{$mKey};
+  //.#{$key} {
+  //#{$oVal}: 25% * $mVal;
+  //}
+  //._#{$key} > * {
+  //#{$oVal}: 25% * $mVal;
+  //}
+  //}
   //}
 
   .dn\@#{$bp} {
@@ -220,9 +220,9 @@ $bps: (
 
 // Child Mixins
 //TODO: make the this a loop function
-@each $bKey, $bp in $bps {
-  @include bp($bKey);
-}
+// @each $bKey, $bp in $bps {
+//   @include bp($bKey);
+// }
 
 @mixin bl($stop: huge) {
   @include bp(bl, $stop) {
@@ -365,9 +365,9 @@ $bps: (
   // SM
   @include sm {
     display: grid;
-    grid: [start] 1fr [end] / [start] 
-      repeat(auto-fit, minmax($block, 1fr)) [end]; 
-    
+    grid: [start] 1fr [end] / [start]
+      repeat(auto-fit, minmax($block, 1fr)) [end];
+
     .search {
       grid-column: start / span 2;
     }
@@ -405,5 +405,5 @@ $bps: (
 /* Output
 ============================================================================= */
 
-@include site-layout;
-@include bps-debug;
+// @include site-layout;
+// @include bps-debug;
