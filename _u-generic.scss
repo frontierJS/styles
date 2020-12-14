@@ -49,10 +49,6 @@
   cursor: pointer;
 }
 
-.background {
-  // background-color: $d-background-color;
-  background-color: #f1f5ff;
-}
 /* Border - J
 ============================================================================= */
 .j {
@@ -61,6 +57,16 @@
 }
 .jn {
   border-width: 0px;
+}
+
+/* Background - K
+============================================================================= */
+.k {
+  // background-color: $d-background-color;
+  background-color: currentColor;
+}
+.kn {
+  background-color: transparent;
 }
 
 /* Margin
