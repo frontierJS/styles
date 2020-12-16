@@ -442,8 +442,10 @@ a {
 .g {
   display: grid; }
   .gx {
+    display: grid;
     grid-auto-flow: row; }
   .gy {
+    display: grid;
     grid-auto-flow: column; }
   .g.s {
     place-content: stretch; }
@@ -583,6 +585,16 @@ a {
 .fxg._t {
   align-items: start; }
 
+.fx > .-t,
+.fxc > .-t,
+.fxl > .-t,
+.fxr > .-t,
+.fxsa > .-t,
+.fxsb > .-t,
+.fxse > .-t,
+.fxg > .-t {
+  align-self: start; }
+
 .fx._b,
 .fxc._b,
 .fxl._b,
@@ -592,6 +604,16 @@ a {
 .fxse._b,
 .fxg._b {
   align-items: end; }
+
+.fx > .-b,
+.fxc > .-b,
+.fxl > .-b,
+.fxr > .-b,
+.fxsa > .-b,
+.fxsb > .-b,
+.fxse > .-b,
+.fxg > .-b {
+  align-self: end; }
 
 .fx._c,
 .fxc._c,
@@ -603,6 +625,16 @@ a {
 .fxg._c {
   align-items: center; }
 
+.fx > .-c,
+.fxc > .-c,
+.fxl > .-c,
+.fxr > .-c,
+.fxsa > .-c,
+.fxsb > .-c,
+.fxse > .-c,
+.fxg > .-c {
+  align-self: center; }
+
 .fx._s,
 .fxc._s,
 .fxl._s,
@@ -612,6 +644,16 @@ a {
 .fxse._s,
 .fxg._s {
   align-items: stretch; }
+
+.fx > .-s,
+.fxc > .-s,
+.fxl > .-s,
+.fxr > .-s,
+.fxsa > .-s,
+.fxsb > .-s,
+.fxse > .-s,
+.fxg > .-s {
+  align-self: stretch; }
 
 .fy._l,
 .fyc._l,
@@ -623,6 +665,16 @@ a {
 .fyg._l {
   align-items: start; }
 
+.fy > .-l,
+.fyc > .-l,
+.fyt > .-l,
+.fyb > .-l,
+.fysa > .-l,
+.fysb > .-l,
+.fyse > .-l,
+.fyg > .-l {
+  align-self: start; }
+
 .fy._r,
 .fyc._r,
 .fyt._r,
@@ -632,6 +684,16 @@ a {
 .fyse._r,
 .fyg._r {
   align-items: end; }
+
+.fy > .-r,
+.fyc > .-r,
+.fyt > .-r,
+.fyb > .-r,
+.fysa > .-r,
+.fysb > .-r,
+.fyse > .-r,
+.fyg > .-r {
+  align-self: end; }
 
 .fy._c,
 .fyc._c,
@@ -643,6 +705,16 @@ a {
 .fyg._c {
   align-items: center; }
 
+.fy > .-c,
+.fyc > .-c,
+.fyt > .-c,
+.fyb > .-c,
+.fysa > .-c,
+.fysb > .-c,
+.fyse > .-c,
+.fyg > .-c {
+  align-self: center; }
+
 .fy._s,
 .fyc._s,
 .fyt._s,
@@ -652,6 +724,16 @@ a {
 .fyse._s,
 .fyg._s {
   align-items: stretch; }
+
+.fy > .-s,
+.fyc > .-s,
+.fyt > .-s,
+.fyb > .-s,
+.fysa > .-s,
+.fysb > .-s,
+.fyse > .-s,
+.fyg > .-s {
+  align-self: stretch; }
 
 /* Overview
   .v = Font Size relative em *
