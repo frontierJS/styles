@@ -260,7 +260,7 @@ input:invalid {
 ::before,
 ::after {
   box-sizing: inherit;
-  transition: all 200 ease; }
+  transition: all 250ms ease; }
 
 html {
   font-family: Arial, Helvetica, sans-serif;
@@ -374,6 +374,17 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem; }
 
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent; }
+  table td,
+  table th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6; }
+
 span,
 input,
 img,
@@ -400,7 +411,7 @@ a {
   :root {
     font-size: 14px; } }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   :root {
     font-size: 16px; } }
 
@@ -1088,14 +1099,45 @@ span.box:before {
 .pointer {
   cursor: pointer; }
 
-.background {
-  background-color: #f1f5ff; }
+/* Border - J
+============================================================================= */
+.j {
+  border-color: currentColor;
+  border-width: 1px; }
 
-.border {
-  border: 1px solid #111; }
+.jt {
+  border-color: currentColor;
+  border-top-width: 1px; }
 
-.border-none {
-  border: none; }
+.jb {
+  border-color: currentColor;
+  border-bottom-width: 1px; }
+
+.jl {
+  border-color: currentColor;
+  border-left-width: 1px; }
+
+.jr {
+  border-color: currentColor;
+  border-right-width: 1px; }
+
+._j > * {
+  border-width: 1px;
+  border-color: currentColor; }
+
+.jn {
+  border-width: 0px; }
+
+._jn > * {
+  border-width: 0px; }
+
+/* Background - K
+============================================================================= */
+.k {
+  background-color: currentColor; }
+
+.kn {
+  background-color: transparent; }
 
 /* Margin
 ============================================================================= */
@@ -2266,6 +2308,46 @@ span.box:before {
 .ellipsis {
   text-overflow: ellipsis;
   overflow: hidden; }
+
+@media screen and (min-width: 600px) {
+  .q {
+    max-width: 50%; }
+    .q__ {
+      max-width: 16%; }
+    .q_ {
+      max-width: 25%; }
+    .q\-\- {
+      max-width: 33%; }
+    .q\- {
+      max-width: 40%; }
+    .q\+ {
+      max-width: 55%; }
+    .q\+\+ {
+      max-width: 60%; }
+    .q\* {
+      max-width: 75%; }
+    .q\*\* {
+      max-width: 90%; } }
+
+@media screen and (min-width: 1200px) {
+  .q {
+    max-width: 33%; }
+    .q__ {
+      max-width: 16%; }
+    .q_ {
+      max-width: 25%; }
+    .q\-\- {
+      max-width: 33%; }
+    .q\- {
+      max-width: 40%; }
+    .q\+ {
+      max-width: 55%; }
+    .q\+\+ {
+      max-width: 60%; }
+    .q\* {
+      max-width: 75%; }
+    .q\*\* {
+      max-width: 90%; } }
 
 /* Components: separately styled components (buttons, form inputs, toolbars...)
 ============================================================================= */

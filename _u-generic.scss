@@ -52,10 +52,33 @@
 /* Border - J
 ============================================================================= */
 .j {
+  border-color: currentColor;
+  border-width: 1px;
+}
+.jt {
+  border-color: currentColor;
+  border-top-width: 1px;
+}
+.jb {
+  border-color: currentColor;
+  border-bottom-width: 1px;
+}
+.jl {
+  border-color: currentColor;
+  border-left-width: 1px;
+}
+.jr {
+  border-color: currentColor;
+  border-right-width: 1px;
+}
+._j > * {
   border-width: 1px;
   border-color: currentColor;
 }
 .jn {
+  border-width: 0px;
+}
+._jn > * {
   border-width: 0px;
 }
 
@@ -404,8 +427,64 @@ $p-axises: x, y;
 }
 
 .ellipsis {
-text-overflow: ellipsis;
-overflow: hidden;
-//white-space: nowrap;
-//content: '\u2026';
+  text-overflow: ellipsis;
+  overflow: hidden;
+  //white-space: nowrap;
+  //content: '\u2026';
+}
+.q {
+  @media screen and (min-width: 600px) {
+    max-width: 50%;
+    &__ {
+      max-width: 16%;
+    }
+    &_ {
+      max-width: 25%;
+    }
+    &\-\- {
+      max-width: 33%;
+    }
+    &\- {
+      max-width: 40%;
+    }
+    &\+ {
+      max-width: 55%;
+    }
+    &\+\+ {
+      max-width: 60%;
+    }
+    &\* {
+      max-width: 75%;
+    }
+    &\*\* {
+      max-width: 90%;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    max-width: 33%;
+    &__ {
+      max-width: 16%;
+    }
+    &_ {
+      max-width: 25%;
+    }
+    &\-\- {
+      max-width: 33%;
+    }
+    &\- {
+      max-width: 40%;
+    }
+    &\+ {
+      max-width: 55%;
+    }
+    &\+\+ {
+      max-width: 60%;
+    }
+    &\* {
+      max-width: 75%;
+    }
+    &\*\* {
+      max-width: 90%;
+    }
+  }
 }
