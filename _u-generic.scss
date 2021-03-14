@@ -131,7 +131,7 @@
 
 $m-axises: x, y;
 @each $axis in $m-axises {
-  @each $mKey, $mVal in $multipliers {
+  @each $mKey, $mVal in $spacing-multipliers {
     $key: m#{$axis}#{$mKey};
     @if $axis == x {
       .#{$key} {
@@ -155,12 +155,12 @@ $m-axises: x, y;
   }
 }
 
-/* Padding
+/* Padding and Margin
 ============================================================================= */
 
 @each $oKey, $oVal in $spacing-options {
   @each $dKey, $dVal in $directions {
-    @each $mKey, $mVal in $multipliers {
+    @each $mKey, $mVal in $spacing-multipliers {
       $key: #{$oKey}#{$dKey}#{$mKey};
       .#{$key} {
         #{$oVal}#{$dVal}: 1em * $mVal;
@@ -172,6 +172,8 @@ $m-axises: x, y;
   }
 }
 
+/* Padding
+============================================================================= */
 .pn,
 ._pn > * {
   padding: 0;
@@ -194,7 +196,7 @@ $m-axises: x, y;
 
 $p-axises: x, y;
 @each $axis in $p-axises {
-  @each $mKey, $mVal in $multipliers {
+  @each $mKey, $mVal in $spacing-multipliers {
     $key: p#{$axis}#{$mKey};
     @if $axis == x {
       .#{$key} {

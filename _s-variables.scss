@@ -84,15 +84,15 @@ $d-box-min-width: $sec;
 
 /* Spacing - Padding
 ========================================================================== */
-$d-padding: 0.5em;
+$d-padding: 1em;
 $d-padding-x: $d-padding;
-$d-padding-y: $d-padding * 2;
+$d-padding-y: $d-padding;
 
 /* Spacing - Margin
 ========================================================================== */
 $d-margin: 1rem;
 $d-margin-x: $d-margin;
-$d-margin-y: $d-margin * 2;
+$d-margin-y: $d-margin;
 
 //Border radius
 $d-radius: 0.2em;
@@ -132,7 +132,7 @@ $d-input-box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.2);
 
 // Buttons
 $d-button-font-size: $d-font-size;
-$d-button-padding: $d-padding-x $d-padding-y;
+$d-button-padding: $d-padding-x * 0.5 $d-padding-y;
 
 $d-button-color: #fff;
 $d-button-background-color: $d-blue;
@@ -161,6 +161,18 @@ $multipliers: (
   '\\+\\+': 1.5,
   '\\*': 2,
   '\\*\\*': 2.75,
+);
+
+$spacing-multipliers: (
+  '__': 0.5,
+  '_': 0.75,
+  '--': 0.875,
+  '-': 1,
+  '': 2,
+  '\\+': 4,
+  '\\+\\+': 5,
+  '\\*': 8,
+  '\\*\\*': 10,
 );
 
 $size-options: (
